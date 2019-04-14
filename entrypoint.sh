@@ -7,10 +7,9 @@ set -e
 # [ -n "$AWS_DEFAULT_OUTPUT" ] || export AWS_DEFAULT_OUTPUT=json
 # Capture output
 #output=$( sh -c "aws $*" )
+# Preserve output for consumption by downstream actions
+#echo "$output" > "${HOME}/${GITHUB_ACTION}.${AWS_DEFAULT_OUTPUT}"
+#echo "$output"
 
 output=$( sh -c "mu $*" )
-
-# AWS, again +1
-# Preserve output for consumption by downstream actions
-echo "$output" > "${HOME}/${GITHUB_ACTION}.${AWS_DEFAULT_OUTPUT}"
 echo "$output"
