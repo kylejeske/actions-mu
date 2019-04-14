@@ -37,7 +37,13 @@ docker-filepush: ## pushes the dockerfile for the build, over to the build serve
 .PHONY: docker-build
 docker-build: docker-filepush ## builds the docker container to spec of docker file
 	#@echo "Running: shell docker -H $(DOCKER_PROTO)$(DOCKER_HOST) build . -t $(IMAGE_NAME):$(RELEASE)"
-	$(shell docker -H $(DOCKER_PROTO)$(DOCKER_HOST) build . -t $(IMAGE_NAME):$(RELEASE) --no-cache 2>&1)
+	docker -H $(DOCKER_PROTO)$(DOCKER_HOST) build . -t $(IMAGE_NAME):$(RELEASE) --target utility-runner
+
+#docker-filepush docker-build docker-save
+.PHONY: docker-container-run
+docker-container-run: ## provide the run command for the container to spec of files
+	# docker run --rm -ti --name mu-tester-2 stelligent-mu:0.1.2 mu
+	@echo "docker -H $(DOCKER_PROTO)$(DOCKER_HOST) run --rm -ti --name mu-aws-runner-agent-1-$(NAME_NAME) mu [mu specific commands, see: mu --help]"
 
 .PHONY: docker-save
 docker-save: docker-build ## saves the file of the docker build
