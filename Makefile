@@ -1,6 +1,6 @@
-REPO_URL=http://github.com/kylejeske/actions/mu
+REPO_URL=http://github.com/kylejeske/actions-mu
 IMAGE_NAME=stelligent-mu
-RELEASE=v0.1.0
+RELEASE=v0.1.1
 
 include ./.make/docker.mk
 
